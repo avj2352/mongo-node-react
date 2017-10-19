@@ -5,16 +5,12 @@ import './simple-form.css';
 class SimpleForm extends Component{
     constructor(props,context){
         super(props,context);
-        this.state = {
-            data:'',
+        this.state = {            
             submitFormResponse:''
         };
     }
     onSubmit = ()=>{
-        console.log(this.refs.email.value);
-        this.setState({
-            data:{email:this.refs.email.value}        
-        });//end:setState
+        console.log(this.refs.memberName.value);        
         var self = this; //to maintain the context of this for Axios         
         simpleformService.sendPostData(this.refs).then(
             function(response){
@@ -30,7 +26,7 @@ class SimpleForm extends Component{
         if(this.state.submitFormResponse != ''){
             successDiv = 
             <div className="alert alert-dismissible alert-success">                
-                <strong>Success!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
+                <strong>Success!</strong> Your Record<a href="#" className="alert-link">got saved successfully</a>.
             </div>
             ;
         }
@@ -43,11 +39,37 @@ class SimpleForm extends Component{
                             <fieldset>
                                 <legend>Standup Meeting</legend>
                                     <div className="form-group">
-                                    <label htmlFor="inputEmail" className="col-lg-2 control-label">Email</label>
+                                    <div class="row">
+                                    <label htmlFor="memberName" className="col-lg-2 control-label">Member Name: </label>
                                         <div className="col-lg-10">
-                                            <input name="inputEmail" ref="email" type="text" className="form-control" id="inputEmail" placeholder="Email"/>      
+                                            <input name="memberName" ref="memberName" type="text" className="form-control" id="inputEmail" placeholder="Member Name"/>      
                                         </div>
-                                        <p>&nbsp;</p>
+                                    </div>                                    
+                                    <div class="row">
+                                    <label htmlFor="projectName" className="col-lg-2 control-label">Project Name: </label>
+                                        <div className="col-lg-10">
+                                            <input name="projectName" ref="projectName" type="text" className="form-control" id="inputEmail" placeholder="Project Name"/>      
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                    <label htmlFor="workYesterday" className="col-lg-2 control-label">Work Yesterday: </label>
+                                        <div className="col-lg-10">
+                                            <input name="workYesterday" ref="workYesterday" type="text" className="form-control" id="inputEmail" placeholder="What did you work yesterday"/>      
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                    <label htmlFor="workToday" className="col-lg-2 control-label">Work Today: </label>
+                                        <div className="col-lg-10">
+                                            <input name="workToday" ref="workToday" type="text" className="form-control" id="inputEmail" placeholder="What did you work today"/>      
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                    <label htmlFor="impediment" className="col-lg-2 control-label">Impediment: </label>
+                                        <div className="col-lg-10">
+                                            <input name="impediment" ref="impediment" type="text" className="form-control" id="inputEmail" placeholder="Any impediments?"/>      
+                                        </div>
+                                    </div>
+                                    <p>&nbsp;</p>
                                         <div className="row col-lg-12 right-align">
                                             <button className="btn btn-info" onClick={this.onSubmit}>Submit</button>
                                         </div>

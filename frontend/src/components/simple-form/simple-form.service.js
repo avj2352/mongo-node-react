@@ -9,7 +9,11 @@ function sendPostData(inputObj){
         method:'POST',
         url:'http://localhost:5000/api/email',
         data:{
-            email:inputObj.email.value
+            memberName:inputObj.memberName.value,
+            projectName:inputObj.projectName.value,
+            workYesterday:inputObj.workYesterday.value,
+            workToday:inputObj.workToday.value,
+            impediment:inputObj.impediment.value,
         },
     });
 }//end:sent
