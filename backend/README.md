@@ -126,3 +126,16 @@ var customDocument = new CustomModel({
   email:'pramod.jingade@philips.com'
 })
 ```
+
+# Mongoose Document Queries
+
+You can query on a `Model` instance
+
+```js
+var Standup = mongoose.model('Standup',customSchema);
+var query = Standup.find() ; // If no callback is mentioned inside the .find(), it returns a Query object
+var result = Standup.find(function(err,results){
+//This time we are passing a callback function
+//It returns the standup model, but this time it even executes the query
+});//end;find
+```

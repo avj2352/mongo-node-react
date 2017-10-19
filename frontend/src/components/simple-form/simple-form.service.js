@@ -1,8 +1,16 @@
 import axios from 'axios';
 
 const simpleformService = {
-    sendPostData:sendPostData
+    sendPostData:sendPostData,
+    getAllRecords:getAllRecords
 }
+
+function getAllRecords(){
+    return axios({
+        method:'GET',
+        url:'http://localhost:5000/api/email',        
+    });
+}//end:getAllRecords
 
 function sendPostData(inputObj){
     return axios({

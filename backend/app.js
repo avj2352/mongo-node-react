@@ -11,6 +11,7 @@ var swig = require('swig');
 var mongoose = require('mongoose');
 //Controllers
 var standUpController = require('./controllers/standup.controller');
+var database;
 
 //Create an Express instance
 var app = express();
@@ -20,7 +21,12 @@ app.use(bodyParser.json());
 //Mongo configuration
 //Connect to mongo
 mongoose.connect("mongodb://localhost:27017/standupmeetingnotes",function(err,db){
-(!err)?console.log("we are connected"):console.log("error connecting",err)});//end:connect
+(!err)?console.log("we are connected"):console.log("error connecting",err);
+if(!err){
+  database = db;
+}
+});//end:connect
+
 
 //Custom middleware - This is require to allow OPTIONS from CORS client
 app.use(function(req, res, next) {
@@ -33,6 +39,12 @@ app.use(function(req, res, next) {
 app.post('/api/email',function(req,res){
   console.log('Request body is: ', req.body);
   standUpController.create(req,res);
+});//end:post
+
+//STEP 1: Simple POST test
+app.get('/api/email',function(req,res){
+  console.log('Request body is: ', req.body);
+  standUpController.listAllRecords(req,res,database);
 });//end:post
 
 //Finally - create a server and a port to listen to

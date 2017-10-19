@@ -16,4 +16,11 @@ exports.create = function(req,res){
     entry.save();
     res.status(200);
     res.send({status:'Success'});
-};//end:exports
+};//end:create
+
+exports.listAllRecords = function(req,res,db){
+    Standup.find(function(err,results){
+        res.status(200);
+        res.send({status:'Success',data:results});
+    });//end:find
+};//end:listAllRecords

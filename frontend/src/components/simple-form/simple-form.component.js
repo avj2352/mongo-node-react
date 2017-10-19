@@ -8,7 +8,19 @@ class SimpleForm extends Component{
         this.state = {            
             submitFormResponse:''
         };
-    }
+    }//end:constructor
+
+    componentDidMount(){
+        simpleformService.getAllRecords().then(
+            function(response){
+                console.log('Success Response: ', response);
+            },
+            function(errorResponse){
+                console.log('Error Response: ', errorResponse);
+            }
+        );//end:then
+    }//end:componentDidMount
+
     onSubmit = ()=>{
         console.log(this.refs.memberName.value);        
         var self = this; //to maintain the context of this for Axios         
@@ -39,31 +51,31 @@ class SimpleForm extends Component{
                             <fieldset>
                                 <legend>Standup Meeting</legend>
                                     <div className="form-group">
-                                    <div class="row">
+                                    <div className="row">
                                     <label htmlFor="memberName" className="col-lg-2 control-label">Member Name: </label>
                                         <div className="col-lg-10">
                                             <input name="memberName" ref="memberName" type="text" className="form-control" id="inputEmail" placeholder="Member Name"/>      
                                         </div>
                                     </div>                                    
-                                    <div class="row">
+                                    <div className="row">
                                     <label htmlFor="projectName" className="col-lg-2 control-label">Project Name: </label>
                                         <div className="col-lg-10">
                                             <input name="projectName" ref="projectName" type="text" className="form-control" id="inputEmail" placeholder="Project Name"/>      
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div className="row">
                                     <label htmlFor="workYesterday" className="col-lg-2 control-label">Work Yesterday: </label>
                                         <div className="col-lg-10">
                                             <input name="workYesterday" ref="workYesterday" type="text" className="form-control" id="inputEmail" placeholder="What did you work yesterday"/>      
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div className="row">
                                     <label htmlFor="workToday" className="col-lg-2 control-label">Work Today: </label>
                                         <div className="col-lg-10">
                                             <input name="workToday" ref="workToday" type="text" className="form-control" id="inputEmail" placeholder="What did you work today"/>      
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div className="row">
                                     <label htmlFor="impediment" className="col-lg-2 control-label">Impediment: </label>
                                         <div className="col-lg-10">
                                             <input name="impediment" ref="impediment" type="text" className="form-control" id="inputEmail" placeholder="Any impediments?"/>      
